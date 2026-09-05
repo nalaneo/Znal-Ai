@@ -121,7 +121,7 @@ const AUTH_BACKGROUND_URL = "";
   coba ambil dari manifest.json.
   ============================================================
 */
-const GOOGLE_CLIENT_ID_WEB = "828145605245-beg4v67h9bnuie63temfb00dimiq6nuh.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID_WEB = "495786245164-og93hhjlv77qji0tbpm89vsskuk4g1a7.apps.googleusercontent.com";
 let GOOGLE_CLIENT_ID = GOOGLE_CLIENT_ID_WEB;
 
 /*
