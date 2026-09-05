@@ -53,7 +53,7 @@ const CONFIG = {
 const AI_PROVIDER = {
   label: "Agnes AI",
   url: "https://apihub.agnes-ai.com/v1/chat/completions",
-  key: "sk-Xj3EfYwDTSYVLS0I2itbIuSGVN7gEcGjLqhSdDzxbe5V9KCO",     // isi API Key Agnes AI kamu di sini
+  key: "Lawak Mau Ambil yav😂😂",     // isi API Key Agnes AI kamu di sini
   model: "agnes-2.0-flash" // ganti model di sini kapan saja
 };
 
