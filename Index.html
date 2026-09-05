@@ -3,128 +3,925 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#040408">
+
+  <meta name="theme-color" content="#050509">
   <meta name="description" content="ZNAL AI sedang dalam pemeliharaan.">
+
+  <!-- Google Search Console
+       GANTI TOKEN DI BAWAH DENGAN TOKEN ASLI DARI GOOGLE -->
+  <!-- <meta name="google-site-verification" content="TOKEN_GOOGLE"> -->
 
   <title>ZNAL Error — Sedang Diperbaiki</title>
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050509;
+      --text: #ffffff;
+      --muted: #9696a8;
+      --purple: #8b5cf6;
+      --purple2: #a855f7;
+      --blue: #6366f1;
+      --glass: rgba(255,255,255,.055);
+      --border: rgba(255,255,255,.09);
+    }
+
+    html {
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow: hidden;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(124,58,237,.13),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 15% 85%,
+          rgba(79,70,229,.08),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 85% 15%,
+          rgba(168,85,247,.07),
+          transparent 25%
+        ),
+        #050509;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .12;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 45px 45px;
+      mask-image: radial-gradient(circle at center, black, transparent 85%);
+    }
+
+    .aurora {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      opacity: .18;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+
+    .aurora.one {
+      top: -180px;
+      left: -120px;
+      background: #7c3aed;
+    }
+
+    .aurora.two {
+      right: -180px;
+      bottom: -170px;
+      background: #4f46e5;
+      animation-delay: -5s;
+    }
+
+    .aurora.three {
+      left: 45%;
+      top: 55%;
+      width: 260px;
+      height: 260px;
+      background: #9333ea;
+      opacity: .09;
+      animation-delay: -2s;
+    }
+
+    @keyframes float {
+      from {
+        transform: translate3d(0,0,0) scale(1);
+      }
+      to {
+        transform: translate3d(35px,-25px,0) scale(1.12);
+      }
+    }
+
+    .grid {
+      position: fixed;
+      left: -20%;
+      right: -20%;
+      bottom: -42%;
+      height: 75%;
+      transform: perspective(450px) rotateX(62deg);
+      transform-origin: bottom;
+      background-image:
+        linear-gradient(rgba(139,92,246,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139,92,246,.07) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to top, black, transparent);
+      pointer-events: none;
+      opacity: .5;
+    }
+
+    .vignette {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          circle,
+          transparent 25%,
+          rgba(0,0,0,.18) 65%,
+          rgba(0,0,0,.72) 100%
+        );
+    }
+
+    .scanline {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: -10%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(168,85,247,.4),
+        transparent
+      );
+      box-shadow: 0 0 25px rgba(139,92,246,.4);
+      animation: scan 7s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      from {
+        transform: translateY(-10vh);
+      }
+      to {
+        transform: translateY(120vh);
+      }
+    }
+
+    .corner {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .corner::before,
+    .corner::after {
+      content: "";
+      position: absolute;
+      background: rgba(255,255,255,.4);
+    }
+
+    .corner::before {
+      width: 100%;
+      height: 1px;
+    }
+
+    .corner::after {
+      width: 1px;
+      height: 100%;
+    }
+
+    .corner.tl {
+      top: 25px;
+      left: 25px;
+    }
+
+    .corner.tr {
+      top: 25px;
+      right: 25px;
+      transform: rotate(90deg);
+    }
+
+    .corner.bl {
+      bottom: 25px;
+      left: 25px;
+      transform: rotate(-90deg);
+    }
+
+    .corner.br {
+      bottom: 25px;
+      right: 25px;
+      transform: rotate(180deg);
+    }
+
+    main {
+      position: relative;
+      z-index: 5;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+    }
+
+    .container {
+      width: min(720px, 100%);
+      text-align: center;
+      animation: enter 1.1s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .logo-wrap {
+      position: relative;
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 25px;
+      display: grid;
+      place-items: center;
+    }
+
+    .logo-glow {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(139,92,246,.3),
+        transparent 65%
+      );
+      filter: blur(10px);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% {
+        opacity: .5;
+        transform: scale(.9);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.15);
+      }
+    }
+
+    .logo-ring {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(168,85,247,.55);
+      border-radius: 28px;
+      transform: rotate(45deg);
+      box-shadow:
+        0 0 25px rgba(139,92,246,.18),
+        inset 0 0 20px rgba(139,92,246,.08);
+      animation: rotate 9s linear infinite;
+    }
+
+    .logo-ring::before {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      top: -4px;
+      left: 50%;
+      border-radius: 50%;
+      background: #c4b5fd;
+      box-shadow: 0 0 14px #a78bfa;
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(405deg);
+      }
+    }
+
+    .logo {
+      position: relative;
+      z-index: 2;
+      width: 65px;
+      height: 65px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(168,85,247,.25),
+          rgba(79,70,229,.1)
+        ),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 15px 50px rgba(0,0,0,.4),
+        inset 0 1px rgba(255,255,255,.12);
+      backdrop-filter: blur(15px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.035);
+      color: #c9c9d6;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0,0,0,.2);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #a78bfa;
+      box-shadow: 0 0 12px #8b5cf6;
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      50% {
+        transform: scale(.55);
+        opacity: .5;
+      }
+    }
+
+    h1 {
+      font-size: clamp(48px, 10vw, 88px);
+      line-height: .95;
+      letter-spacing: -5px;
+      font-weight: 900;
+      margin-bottom: 18px;
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #eeeaff 45%,
+          #a78bfa 100%
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 10px 30px rgba(139,92,246,.12));
+    }
+
+    .subtitle {
+      max-width: 580px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .card {
+      position: relative;
+      margin: 35px auto 0;
+      width: min(600px, 100%);
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.07),
+          rgba(255,255,255,.025)
+        );
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.38),
+        inset 0 1px rgba(255,255,255,.08);
+      backdrop-filter: blur(22px);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(167,139,250,.7),
+        transparent
+      );
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      text-align: left;
+    }
+
+    .status-title {
+      font-size: 12px;
+      color: #77778a;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .status-value {
+      font-size: 14px;
+      color: #dddbea;
+      font-weight: 700;
+    }
+
+    .status-live {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #b7a6ff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .status-live span {
+      width: 6px;
+      height: 6px;
+      background: #a78bfa;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #8b5cf6;
+    }
+
+    .progress {
+      position: relative;
+      width: 100%;
+      height: 4px;
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .progress-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 45%;
+      border-radius: inherit;
+      background: linear-gradient(
+        90deg,
+        #6d28d9,
+        #a78bfa,
+        #6366f1
+      );
+      box-shadow: 0 0 18px rgba(139,92,246,.7);
+      animation: progress 2.8s ease-in-out infinite;
+    }
+
+    @keyframes progress {
+      0% {
+        transform: translateX(-110%);
+        width: 25%;
+      }
+      50% {
+        width: 55%;
+      }
+      100% {
+        transform: translateX(210%);
+        width: 25%;
+      }
+    }
+
+    .systems {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .system {
+      padding: 12px;
+      border-radius: 15px;
+      background: rgba(0,0,0,.15);
+      border: 1px solid rgba(255,255,255,.045);
+    }
+
+    .system-name {
+      display: block;
+      color: #6f6f80;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      margin-bottom: 5px;
+    }
+
+    .system-state {
+      color: #b9b9c8;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 30px;
+      color: #4e4e5c;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .footer b {
+      color: #77718d;
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: #b9a7ff;
+      box-shadow: 0 0 8px rgba(167,139,250,.7);
+      animation: particleFloat linear infinite;
+    }
+
+    @keyframes particleFloat {
+      from {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+      10% {
+        opacity: .8;
+      }
+      90% {
+        opacity: .5;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 20px;
+      }
+
+      .logo-wrap {
+        width: 78px;
+        height: 78px;
+        margin-bottom: 22px;
+      }
+
+      .logo {
+        width: 57px;
+        height: 57px;
+        border-radius: 17px;
+        font-size: 22px;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+        font-size: clamp(48px, 17vw, 70px);
+      }
+
+      .subtitle {
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .card {
+        margin-top: 28px;
+        padding: 18px;
+        border-radius: 20px;
+      }
+
+      .systems {
+        gap: 7px;
+      }
+
+      .system {
+        padding: 10px 7px;
+      }
+
+      .corner {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="background">
-    <div class="aurora aurora-a"></div>
-    <div class="aurora aurora-b"></div>
-    <div class="aurora aurora-c"></div>
+  <div class="aurora one"></div>
+  <div class="aurora two"></div>
+  <div class="aurora three"></div>
 
-    <div class="grid"></div>
-    <div class="vignette"></div>
-    <div class="noise"></div>
-
-    <div class="particles">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-
+  <div class="grid"></div>
+  <div class="vignette"></div>
   <div class="scanline"></div>
 
-  <div class="corner top-left"></div>
-  <div class="corner top-right"></div>
-  <div class="corner bottom-left"></div>
-  <div class="corner bottom-right"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
 
-  <main class="main">
+  <div class="particles" id="particles"></div>
 
-    <div class="logo-wrap">
-      <div class="logo-ring"></div>
+  <main>
+    <section class="container">
 
-      <div class="logo">
-        <span>Z</span>
+      <div class="logo-wrap">
+        <div class="logo-glow"></div>
+        <div class="logo-ring"></div>
+
+        <div class="logo">
+          Z
+        </div>
       </div>
-    </div>
 
-    <div class="status">
-      <span class="status-dot"></span>
-      <span>System Maintenance</span>
-    </div>
+      <div class="badge">
+        <span class="dot"></span>
+        <span id="processText">PROCESSING</span>
+      </div>
 
-    <h1>
-      <span>ZNAL</span> Error
-    </h1>
+      <h1>ZNAL Error</h1>
 
-    <p class="subtitle">
-      <strong>ZNAL AI</strong> sedang mengalami gangguan sementara
-      dan saat ini sedang diperbaiki oleh sistem.
-      <br>
-      Mohon tunggu beberapa saat sampai layanan kembali normal.
-    </p>
+      <p class="subtitle">
+        ZNAL AI sedang mengalami proses pemeliharaan.
+        Sistem sedang diperbaiki, dioptimalkan, dan dipersiapkan
+        agar dapat kembali berjalan dengan performa terbaik.
+      </p>
 
-    <section class="card">
+      <div class="card">
 
-      <div class="card-header">
-
-        <div class="card-title">
-          <div class="card-icon">↻</div>
+        <div class="status-row">
 
           <div>
-            <small>STATUS</small>
-            <strong id="statusText">Memperbaiki sistem</strong>
+            <div class="status-title">
+              System Status
+            </div>
+
+            <div class="status-value" id="statusText">
+              Memperbaiki sistem
+            </div>
           </div>
+
+          <div class="status-live">
+            <span></span>
+            ACTIVE
+          </div>
+
         </div>
 
-        <span id="processText">PROCESSING</span>
+        <div class="progress">
+          <div class="progress-bar"></div>
+        </div>
+
+        <div class="systems">
+
+          <div class="system">
+            <span class="system-name">CORE</span>
+            <span class="system-state">Repairing</span>
+          </div>
+
+          <div class="system">
+            <span class="system-name">AI</span>
+            <span class="system-state">Optimizing</span>
+          </div>
+
+          <div class="system">
+            <span class="system-name">SYNC</span>
+            <span class="system-state">Running</span>
+          </div>
+
+        </div>
 
       </div>
 
-      <div class="progress">
-        <div class="progress-bar"></div>
-      </div>
-
-      <div class="card-footer">
-        <span>ZNAL CORE</span>
-        <span>SYSTEM RECOVERY</span>
+      <div class="footer">
+        ZNAL AI <b>•</b> BUILT BY NALANEO
       </div>
 
     </section>
-
-    <div class="system-status">
-
-      <div>
-        <i class="active"></i>
-        CORE
-      </div>
-
-      <div>
-        <i class="active"></i>
-        AI
-      </div>
-
-      <div>
-        <i></i>
-        SYNC
-      </div>
-
-    </div>
-
-    <footer>
-      <strong>ZNAL AI</strong>
-      <span>•</span>
-      BUILT BY NALANEO
-    </footer>
-
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    "use strict";
+
+    const processText =
+      document.getElementById("processText");
+
+    const statusText =
+      document.getElementById("statusText");
+
+    const states = [
+      {
+        process: "PROCESSING",
+        status: "Memperbaiki sistem"
+      },
+      {
+        process: "REPAIRING",
+        status: "Memeriksa layanan"
+      },
+      {
+        process: "OPTIMIZING",
+        status: "Mengoptimalkan sistem"
+      },
+      {
+        process: "SYNCING",
+        status: "Sinkronisasi layanan"
+      },
+      {
+        process: "RECOVERING",
+        status: "Memulihkan sistem"
+      }
+    ];
+
+    let stateIndex = 0;
+
+    function changeStatus() {
+
+      stateIndex =
+        (stateIndex + 1) % states.length;
+
+      const state =
+        states[stateIndex];
+
+      processText.animate(
+        [
+          {
+            opacity: 1,
+            transform: "translateY(0)"
+          },
+          {
+            opacity: 0,
+            transform: "translateY(-5px)"
+          },
+          {
+            opacity: 1,
+            transform: "translateY(0)"
+          }
+        ],
+        {
+          duration: 450,
+          easing: "ease"
+        }
+      );
+
+      statusText.animate(
+        [
+          {
+            opacity: 1
+          },
+          {
+            opacity: 0
+          },
+          {
+            opacity: 1
+          }
+        ],
+        {
+          duration: 450,
+          easing: "ease"
+        }
+      );
+
+      setTimeout(() => {
+        processText.textContent =
+          state.process;
+
+        statusText.textContent =
+          state.status;
+      }, 180);
+    }
+
+    setInterval(changeStatus, 2400);
+
+
+    /* Floating particles */
+
+    const particleContainer =
+      document.getElementById("particles");
+
+    for (let i = 0; i < 18; i++) {
+
+      const particle =
+        document.createElement("div");
+
+      particle.className = "particle";
+
+      particle.style.left =
+        Math.random() * 100 + "%";
+
+      particle.style.animationDuration =
+        (8 + Math.random() * 15) + "s";
+
+      particle.style.animationDelay =
+        (-Math.random() * 15) + "s";
+
+      particle.style.opacity =
+        (0.25 + Math.random() * 0.65).toFixed(2);
+
+      particleContainer.appendChild(particle);
+    }
+
+
+    /* Subtle pointer glow */
+
+    let mouseX = 50;
+    let mouseY = 50;
+    let currentX = 50;
+    let currentY = 50;
+
+    document.addEventListener(
+      "pointermove",
+      event => {
+
+        mouseX =
+          (event.clientX / window.innerWidth) * 100;
+
+        mouseY =
+          (event.clientY / window.innerHeight) * 100;
+      },
+      { passive: true }
+    );
+
+    function pointerAnimation() {
+
+      currentX +=
+        (mouseX - currentX) * 0.025;
+
+      currentY +=
+        (mouseY - currentY) * 0.025;
+
+      document.body.style.background =
+        `
+        radial-gradient(
+          circle at ${currentX}% ${currentY}%,
+          rgba(124,58,237,.10),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(124,58,237,.13),
+          transparent 32%
+        ),
+        #050509
+        `;
+
+      requestAnimationFrame(pointerAnimation);
+    }
+
+    pointerAnimation();
+  </script>
 
 </body>
 </html>
