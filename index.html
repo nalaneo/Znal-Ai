@@ -1,404 +1,403 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta name="google-site-verification" content="googlecca5d986709e23fc.html">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#07070B">
-  <title>ZNAL AI</title>
+<meta name="google-site-verification" content="googlecca5d986709e23fc.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07070B">
+<title>ZNAL AI</title>
 </head>
 <body>
 
-  <!-- AWAL: semua konten yang tadinya di head, gue pindahin ke body -->
-  <div class="auth-brand">
-    <div class="brand-mark">Z</div>
-    ZNAL AI
+<div class="auth-brand">
+  <div class="brand-mark">Z</div>
+  ZNAL AI
+</div>
+
+<div class="auth-tabs">
+  <button class="auth-tab active" id="auth-tab-login">Masuk</button>
+  <button class="auth-tab" id="auth-tab-register">Daftar</button>
+</div>
+
+<div class="auth-error hidden" id="auth-error"></div>
+
+<form class="auth-form" id="auth-form-login">
+  <div class="field">
+    <label>Email</label>
+    <input type="email" id="login-email" placeholder="nala@gmail.com" autocomplete="username" required>
   </div>
-
-  <div class="auth-tabs">
-    <button class="auth-tab active" id="auth-tab-login">Masuk</button>
-    <button class="auth-tab" id="auth-tab-register">Daftar</button>
-  </div>
-
-  <div class="auth-error hidden" id="auth-error"></div>
-
-  <form class="auth-form" id="auth-form-login">
-    <div class="field">
-      <label>Email</label>
-      <input type="email" id="login-email" placeholder="nala@gmail.com" autocomplete="username" required>
+  <div class="field">
+    <label>Password</label>
+    <div class="pw-wrap">
+      <input type="password" id="login-password" placeholder="Masukkan password" autocomplete="current-password" required>
+      <button type="button" class="pw-toggle" data-target="login-password"><span class="icon" data-icon="eye"></span></button>
     </div>
-    <div class="field">
-      <label>Password</label>
-      <div class="pw-wrap">
-        <input type="password" id="login-password" placeholder="Masukkan password" autocomplete="current-password" required>
-        <button type="button" class="pw-toggle" data-target="login-password"><span class="icon" data-icon="eye"></span></button>
+  </div>
+  <button type="submit" class="primary auth-submit">
+    <span class="icon" data-icon="check"></span> Masuk
+  </button>
+</form>
+
+<form class="auth-form hidden" id="auth-form-register">
+  <div class="field">
+    <label>Email</label>
+    <input type="email" id="reg-email" placeholder="nala@gmail.com" autocomplete="username" required>
+    <div class="field-hint">Harus format email asli, contoh: nala@gmail.com — bukan cuma "Nala"</div>
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <div class="pw-wrap">
+      <input type="password" id="reg-password" placeholder="Buat password" autocomplete="new-password" required>
+      <button type="button" class="pw-toggle" data-target="reg-password"><span class="icon" data-icon="eye"></span></button>
+    </div>
+  </div>
+  <div class="field">
+    <label>Confirm Password</label>
+    <div class="pw-wrap">
+      <input type="password" id="reg-password2" placeholder="Ulangi password yang sama" autocomplete="new-password" required>
+      <button type="button" class="pw-toggle" data-target="reg-password2"><span class="icon" data-icon="eye"></span></button>
+    </div>
+  </div>
+  <button type="submit" class="primary auth-submit">
+    <span class="icon" data-icon="check"></span> Daftar
+  </button>
+</form>
+
+<div class="auth-divider"><span>atau</span></div>
+
+<div id="google-signin-fallback" class="google-fallback">
+  <span class="icon" data-icon="google"></span>
+  <span>Login Google belum dikonfigurasi developer</span>
+</div>
+<div id="google-signin-container" class="google-signin-container hidden"></div>
+
+<div class="auth-note">
+  Data akun & obrolan tersimpan di browser ini saja.
+</div>
+
+<div id="app">
+  <aside id="sidebar">
+    <div class="side-head">
+      <div class="brand">
+        <div class="brand-mark">Z</div>
+        ZNAL AI
       </div>
     </div>
-    <button type="submit" class="primary auth-submit">
-      <span class="icon" data-icon="check"></span> Masuk
+    <button class="new-chat" id="new-chat">
+      <span class="icon" data-icon="plus"></span> Obrolan Baru
     </button>
-  </form>
-
-  <form class="auth-form hidden" id="auth-form-register">
-    <div class="field">
-      <label>Email</label>
-      <input type="email" id="reg-email" placeholder="nala@gmail.com" autocomplete="username" required>
-      <div class="field-hint">Harus format email asli, contoh: nala@gmail.com — bukan cuma "Nala"</div>
+    <div class="side-label">Obrolan</div>
+    <div class="search">
+      <span class="icon" data-icon="search"></span>
+      <input id="search" placeholder="Cari obrolan...">
     </div>
-    <div class="field">
-      <label>Password</label>
-      <div class="pw-wrap">
-        <input type="password" id="reg-password" placeholder="Buat password" autocomplete="new-password" required>
-        <button type="button" class="pw-toggle" data-target="reg-password"><span class="icon" data-icon="eye"></span></button>
-      </div>
+    <div id="chat-list"></div>
+    <div class="side-foot">
+      <button class="side-btn" id="redeem-btn"><span class="icon" data-icon="gift"></span> Redeem Kode</button>
+      <button class="side-btn" id="account-btn"><span class="icon" data-icon="idcard"></span> Tentang Akun</button>
+      <button class="side-btn" id="developer-btn"><span class="icon" data-icon="user"></span> Tentang Developer</button>
     </div>
-    <div class="field">
-      <label>Confirm Password</label>
-      <div class="pw-wrap">
-        <input type="password" id="reg-password2" placeholder="Ulangi password yang sama" autocomplete="new-password" required>
-        <button type="button" class="pw-toggle" data-target="reg-password2"><span class="icon" data-icon="eye"></span></button>
+  </aside>
+
+  <main id="main">
+    <header id="topbar">
+      <button class="icon-btn" id="menu-btn"><span class="icon" data-icon="menu"></span></button>
+      <div class="top-title" id="top-title">Obrolan Baru</div>
+      <div id="chat-limit-indicator">
+        <span class="icon" data-icon="clock"></span>
+        <span id="chat-limit-text">20/20 hari ini</span>
       </div>
-    </div>
-    <button type="submit" class="primary auth-submit">
-      <span class="icon" data-icon="check"></span> Daftar
-    </button>
-  </form>
-
-  <div class="auth-divider"><span>atau</span></div>
-
-  <div id="google-signin-fallback" class="google-fallback">
-    <span class="icon" data-icon="google"></span>
-    <span>Login Google belum dikonfigurasi developer</span>
-  </div>
-  <div id="google-signin-container" class="google-signin-container hidden"></div>
-
-  <div class="auth-note">
-    Data akun & obrolan tersimpan di browser ini saja.
-  </div>
-
-  <!-- LANJUTAN KONTEN YANG TADII DI BAWAH (GUE GABUNGIN SEMUA) -->
-  <div id="app">  
-    <aside id="sidebar">
-      <div class="side-head">
-        <div class="brand">
-          <div class="brand-mark">Z</div>
-          ZNAL AI
-        </div>
-      </div>
-      <button class="new-chat" id="new-chat">
-        <span class="icon" data-icon="plus"></span> Obrolan Baru
-      </button>
-
-      <div class="side-label">Obrolan</div>
-
-      <div class="search">
-        <span class="icon" data-icon="search"></span>
-        <input id="search" placeholder="Cari obrolan...">
-      </div>
-
-      <div id="chat-list"></div>
-
-      <div class="side-foot">
-        <button class="side-btn" id="redeem-btn"><span class="icon" data-icon="gift"></span> Redeem Kode</button>
-        <button class="side-btn" id="account-btn"><span class="icon" data-icon="idcard"></span> Tentang Akun</button>
-        <button class="side-btn" id="developer-btn"><span class="icon" data-icon="user"></span> Tentang Developer</button>
-      </div>
-    </aside>
-
-    <main id="main">
-      <header id="topbar">
-        <button class="icon-btn" id="menu-btn"><span class="icon" data-icon="menu"></span></button>
-        <div class="top-title" id="top-title">Obrolan Baru</div>
-
-        <div id="chat-limit-indicator">
-          <span class="icon" data-icon="clock"></span>
-          <span id="chat-limit-text">20/20 hari ini</span>
-        </div>
-
-        <div class="topbar-right">
-          <div class="menu-anchor">
-            <button class="icon-btn" id="theme-btn"><span class="icon" data-icon="moon"></span></button>
-            <div class="menu-pop" id="theme-menu">
-              <button data-theme="night"><span class="icon" data-icon="moon"></span><span>Gelap</span></button>
-              <button data-theme="light"><span class="icon" data-icon="sun"></span><span>Terang</span></button>
-            </div>
+      <div class="topbar-right">
+        <div class="menu-anchor">
+          <button class="icon-btn" id="theme-btn"><span class="icon" data-icon="moon"></span></button>
+          <div class="menu-pop" id="theme-menu">
+            <button data-theme="night"><span class="icon" data-icon="moon"></span><span>Gelap</span></button>
+            <button data-theme="light"><span class="icon" data-icon="sun"></span><span>Terang</span></button>
           </div>
         </div>
-      </header>
-
-      <section id="chat-view">
-        <div id="welcome">
-          <div class="welcome-mark">Z</div>
-          <h1>ZNAL AI</h1>
-          <p>
-            Asisten AI buatan NalaNeo.
-            Bisa dipakai buat ngobrol, coding, bikin project HTML/CSS/JS terpisah, generate Word/Excel/foto/GIF otomatis lewat Python, sampai analisis isi file APK/ZIP.
-          </p>
-          <div class="suggestions">
-            <button class="suggestion" data-prompt="Buatkan landing page HTML sederhana">Buat landing page</button>
-            <button class="suggestion" data-prompt="Jelaskan apa itu ZNAL AI">Tentang ZNAL AI</button>
-            <button class="suggestion" data-prompt="Buatkan contoh JavaScript sederhana">Contoh JavaScript</button>
-          </div>
-        </div>
-
-        <div id="messages" class="hidden"></div>
-
-        <div id="composer-wrap">
-          <div id="znal-limit-banner"><span class="icon" data-icon="clock"></span><span id="znal-limit-text">ZNAL Limited — Kamu bisa menggunakan kembali setelah 24 jam</span></div>
-
-          <div class="menu-anchor composer-model-wrap">
-            <button class="pill-btn composer-model-btn" id="ai-mode-btn">
-              <span class="icon" data-icon="brain"></span>
-              <span id="ai-mode-label">Gaul</span>
-            </button>
-            <div class="menu-pop menu-pop-up ai-mode-pop" id="ai-mode-menu">
-              <button data-mode="introvert">
-                <span class="icon" data-icon="moon"></span>
-                <span class="mode-opt-text"><span class="mode-opt-title">Introvert</span><span class="mode-opt-sub">Singkat, tenang, hemat kata</span></span>
-              </button>
-              <button data-mode="thinking">
-                <span class="icon" data-icon="thinking"></span>
-                <span class="mode-opt-text"><span class="mode-opt-title">Thinking</span><span class="mode-opt-sub">Nunjukin proses berpikir dulu</span></span>
-              </button>
-              <button data-mode="gaul">
-                <span class="icon" data-icon="chat"></span>
-                <span class="mode-opt-text"><span class="mode-opt-title">Gaul</span><span class="mode-opt-sub">Santai, panggil Bro/Bos</span></span>
-              </button>
-              <button data-mode="sokasik">
-                <span class="icon" data-icon="sun"></span>
-                <span class="mode-opt-text"><span class="mode-opt-title">Sok Asik</span><span class="mode-opt-sub">Heboh, banyak candaan receh</span></span>
-              </button>
-            </div>
-          </div>
-
-          <div id="composer">
-            <div id="previews"></div>
-            <div id="composer-row">
-              <div class="menu-anchor attach-menu-wrap">
-                <button class="composer-btn" id="attach" title="Tambah">
-                  <span class="icon" data-icon="attach"></span>
-                </button>
-                <div class="menu-pop menu-pop-up attach-menu" id="attach-menu">
-                  <button id="attach-image">
-                    <span class="icon" data-icon="image"></span>
-                    <span>Kirim Gambar</span>
-                  </button>
-                  <button id="attach-camera">
-                    <span class="icon" data-icon="camera"></span>
-                    <span>Buka Kamera</span>
-                  </button>
-                  <button id="attach-file">
-                    <span class="icon" data-icon="file"></span>
-                    <span>Kirim File</span>
-                  </button>
-                </div>
-              </div>
-
-              <input type="file" id="file-image" accept="image/*" multiple hidden>
-              <input type="file" id="file-doc" accept=".zip,.apk,.doc,.docx,.txt,.md,.csv,.json,.js,.ts,.py,.html,.css,.xml,.log,.pdf,.xlsx,.pptx" multiple hidden>
-
-              <textarea id="input" rows="1" placeholder="Tulis pesan ke ZNAL AI..."></textarea>
-
-              <button class="composer-btn" id="send" title="Kirim">
-                <span class="icon" data-icon="send"></span>
-              </button>
-            </div>
-          </div>
-
-          <div class="hint">ZNAL AI By NalaNeo</div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- DEVELOPER -->
-  <section id="developer">
-    <header class="dev-top">
-      <button class="icon-btn" id="dev-back"><span class="icon" data-icon="back"></span></button>
-      <div class="top-title">Tentang Developer</div>
+      </div>
     </header>
-    <div class="dev-scroll">
-      <div class="dev-content">
-        <div class="dev-cover" id="dev-cover">
-          <button class="dev-audio-fab" id="dev-audio-toggle">
-            <span class="icon" id="dev-audio-spin" data-icon="sound"></span>
-          </button>
-          <audio id="dev-audio" loop preload="none"></audio>
-        </div>
-        <div class="dev-avatar" id="dev-avatar">N</div>
-        <div class="dev-name">NalaNeo</div>
-        <div class="dev-role">Pembuat &amp; Pengembang ZNAL AI</div>
-        <div class="dev-badge">Solo Developer · ZNAL AI</div>
-        <p class="dev-bio">
-          Membangun ZNAL AI dari nol sebagai project AI untuk semua orang 
-          yang terus dikembangkan dan disempurnakan seiring waktu.
+
+    <section id="chat-view">
+      <div id="welcome">
+        <div class="welcome-mark">Z</div>
+        <h1>ZNAL AI</h1>
+        <p>
+          Asisten AI buatan NalaNeo.
+          Bisa dipakai buat ngobrol, coding, bikin project HTML/CSS/JS terpisah, generate Word/Excel/foto/GIF otomatis lewat Python, sampai analisis isi file APK/ZIP.
         </p>
-        <div class="dev-links" id="dev-links"></div>
+        <div class="suggestions">
+          <button class="suggestion" data-prompt="Buatkan landing page HTML sederhana">Buat landing page</button>
+          <button class="suggestion" data-prompt="Jelaskan apa itu ZNAL AI">Tentang ZNAL AI</button>
+          <button class="suggestion" data-prompt="Buatkan contoh JavaScript sederhana">Contoh JavaScript</button>
+        </div>
       </div>
+
+      <div id="messages" class="hidden"></div>
+
+      <div id="composer-wrap">
+        <div id="znal-limit-banner"><span class="icon" data-icon="clock"></span><span id="znal-limit-text">ZNAL Limited — Kamu bisa menggunakan kembali setelah 24 jam</span></div>
+
+        <div class="menu-anchor composer-model-wrap">
+          <button class="pill-btn composer-model-btn" id="ai-mode-btn">
+            <span class="icon" data-icon="brain"></span>
+            <span id="ai-mode-label">Gaul</span>
+          </button>
+          <div class="menu-pop menu-pop-up ai-mode-pop" id="ai-mode-menu">
+            <button data-mode="introvert">
+              <span class="icon" data-icon="moon"></span>
+              <span class="mode-opt-text"><span class="mode-opt-title">Introvert</span><span class="mode-opt-sub">Singkat, tenang, hemat kata</span></span>
+            </button>
+            <button data-mode="thinking">
+              <span class="icon" data-icon="thinking"></span>
+              <span class="mode-opt-text"><span class="mode-opt-title">Thinking</span><span class="mode-opt-sub">Nunjukin proses berpikir dulu</span></span>
+            </button>
+            <button data-mode="gaul">
+              <span class="icon" data-icon="chat"></span>
+              <span class="mode-opt-text"><span class="mode-opt-title">Gaul</span><span class="mode-opt-sub">Santai, panggil Bro/Bos</span></span>
+            </button>
+            <button data-mode="sokasik">
+              <span class="icon" data-icon="sun"></span>
+              <span class="mode-opt-text"><span class="mode-opt-title">Sok Asik</span><span class="mode-opt-sub">Heboh, banyak candaan receh</span></span>
+            </button>
+          </div>
+        </div>
+
+        <div id="composer">
+          <div id="previews"></div>
+          <div id="composer-row">
+            <div class="menu-anchor attach-menu-wrap">
+              <button class="composer-btn" id="attach" title="Tambah">
+                <span class="icon" data-icon="attach"></span>
+              </button>
+              <div class="menu-pop menu-pop-up attach-menu" id="attach-menu">
+                <button id="attach-image">
+                  <span class="icon" data-icon="image"></span>
+                  <span>Kirim Gambar</span>
+                </button>
+                <button id="attach-camera">
+                  <span class="icon" data-icon="camera"></span>
+                  <span>Buka Kamera</span>
+                </button>
+                <button id="attach-file">
+                  <span class="icon" data-icon="file"></span>
+                  <span>Kirim File</span>
+                </button>
+              </div>
+            </div>
+
+            <input type="file" id="file-image" accept="image/*" multiple hidden>
+            <input type="file" id="file-doc" accept=".zip,.apk,.doc,.docx,.txt,.md,.csv,.json,.js,.ts,.py,.html,.css,.xml,.log,.pdf,.xlsx,.pptx" multiple hidden>
+
+            <textarea id="input" rows="1" placeholder="Tulis pesan ke ZNAL AI..."></textarea>
+
+            <button class="composer-btn" id="send" title="Kirim">
+              <span class="icon" data-icon="send"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="hint">ZNAL AI By NalaNeo</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- DEVELOPER -->
+<section id="developer">
+  <header class="dev-top">
+    <button class="icon-btn" id="dev-back"><span class="icon" data-icon="back"></span></button>
+    <div class="top-title">Tentang Developer</div>
+  </header>
+  <div class="dev-scroll">
+    <div class="dev-content">
+      <div class="dev-cover" id="dev-cover">
+        <button class="dev-audio-fab" id="dev-audio-toggle">
+          <span class="icon" id="dev-audio-spin" data-icon="sound"></span>
+        </button>
+        <audio id="dev-audio" loop preload="none"></audio>
+      </div>
+      <div class="dev-avatar" id="dev-avatar">N</div>
+      <div class="dev-name">NalaNeo</div>
+      <div class="dev-role">Pembuat &amp; Pengembang ZNAL AI</div>
+      <div class="dev-badge">Solo Developer · ZNAL AI</div>
+      <p class="dev-bio">
+        Membangun ZNAL AI dari nol sebagai project AI untuk semua orang 
+        yang terus dikembangkan dan disempurnakan seiring waktu.
+      </p>
+      <div class="dev-links" id="dev-links"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ACCOUNT -->
-  <section id="account">
-    <header class="dev-top">
-      <button class="icon-btn" id="account-back"><span class="icon" data-icon="back"></span></button>
-      <div class="top-title">Tentang Akun</div>
-    </header>
-    <div class="dev-scroll">
-      <div class="dev-content">
-        <div class="dev-avatar" id="account-avatar">A</div>
-        <div class="dev-name" id="account-email">-</div>
-        <div class="dev-role">Akun ZNAL AI</div>
-        <div class="dev-badge" id="account-joined">Bergabung sejak: -</div>
-        <div class="dev-badge hidden" id="account-admin-badge" style="color:var(--gold);border-color:#ffb45455">Mode Developer Aktif</div>
+<!-- ACCOUNT -->
+<section id="account">
+  <header class="dev-top">
+    <button class="icon-btn" id="account-back"><span class="icon" data-icon="back"></span></button>
+    <div class="top-title">Tentang Akun</div>
+  </header>
+  <div class="dev-scroll">
+    <div class="dev-content">
+      <div class="dev-avatar" id="account-avatar">A</div>
+      <div class="dev-name" id="account-email">-</div>
+      <div class="dev-role">Akun ZNAL AI</div>
+      <div class="dev-badge" id="account-joined">Bergabung sejak: -</div>
+      <div class="dev-badge hidden" id="account-admin-badge" style="color:var(--gold);border-color:#ffb45455">Mode Developer Aktif</div>
 
-        <div class="account-card">
-          <div class="account-card-title"><span class="icon" data-icon="chat"></span><span>Ringkasan</span></div>
-          <div class="account-info-row">
-            <span class="icon" data-icon="chat"></span>
-            <span id="account-chat-count">0 obrolan tersimpan</span>
-          </div>
-          <div class="account-info-row">
-            <span class="icon" data-icon="user"></span>
-            <span>Data Hanya di simpan di Browser hp kamu saja</span>
-          </div>
+      <div class="account-card">
+        <div class="account-card-title"><span class="icon" data-icon="chat"></span><span>Ringkasan</span></div>
+        <div class="account-info-row">
+          <span class="icon" data-icon="chat"></span>
+          <span id="account-chat-count">0 obrolan tersimpan</span>
         </div>
-
-        <div class="account-card">
-          <div class="account-card-title"><span class="icon" data-icon="user"></span><span>Profil</span></div>
-          <div class="field">
-            <label>Nama Kamu</label>
-            <input type="text" id="account-name-input" placeholder="Contoh: Budi" maxlength="30">
-          </div>
-          <button class="secondary account-card-btn" id="account-name-save">
-            <span class="icon" data-icon="check"></span> Simpan Nama
-          </button>
+        <div class="account-info-row">
+          <span class="icon" data-icon="user"></span>
+          <span>Data Hanya di simpan di Browser hp kamu saja</span>
         </div>
+      </div>
 
-        <div class="account-card">
-          <div class="account-card-title"><span class="icon" data-icon="thinking"></span><span>Prompt Kustom</span></div>
-          <p class="account-card-desc">
-            Tambahin gaya bicara atau preferensi kamu sendiri ke ZNAL AI (opsional).
-            Ini nggak bisa dipakai buat nyuruh dia jadi AI lain atau melanggar aturan dasarnya —
-            itu tetap dikunci di luar jangkauan prompt kustom.
-          </p>
-          <div class="field">
-            <textarea id="account-prompt-input" rows="3" placeholder="Contoh: selalu kasih contoh kode kalau relevan"></textarea>
-          </div>
-          <button class="secondary account-card-btn" id="account-prompt-save">
-            <span class="icon" data-icon="check"></span> Simpan Prompt
-          </button>
+      <div class="account-card">
+        <div class="account-card-title"><span class="icon" data-icon="user"></span><span>Profil</span></div>
+        <div class="field">
+          <label>Nama Kamu</label>
+          <input type="text" id="account-name-input" placeholder="Contoh: Budi" maxlength="30">
         </div>
-
-        <button class="primary account-signout" id="account-signout-btn">
-          <span class="icon" data-icon="logout"></span> Keluar
+        <button class="secondary account-card-btn" id="account-name-save">
+          <span class="icon" data-icon="check"></span> Simpan Nama
         </button>
       </div>
-    </div>
-  </section>
 
-  <!-- MODAL, CONTEXT MENU, DROP OVERLAY, KAMERA, KONFIRMASI, REDEEM -->
-  <div id="modal">
-    <div class="modal-box">
-      <div class="modal-head">
-        <button class="icon-btn" id="modal-close"><span class="icon" data-icon="close"></span></button>
-        <div class="modal-name" id="modal-name">index.html</div>
-        <div class="modal-tabs">
-          <button class="modal-tab active" id="tab-preview">Pratinjau</button>
-          <button class="modal-tab" id="tab-code">Kode</button>
-          <button class="modal-tab" id="modal-copy"><span class="icon" data-icon="copy"></span> Salin</button>
-          <button class="modal-tab" id="modal-download"><span class="icon" data-icon="download"></span> Unduh</button>
+      <div class="account-card">
+        <div class="account-card-title"><span class="icon" data-icon="thinking"></span><span>Prompt Kustom</span></div>
+        <p class="account-card-desc">
+          Tambahin gaya bicara atau preferensi kamu sendiri ke ZNAL AI (opsional).
+          Ini nggak bisa dipakai buat nyuruh dia jadi AI lain atau melanggar aturan dasarnya —
+          itu tetap dikunci di luar jangkauan prompt kustom.
+        </p>
+        <div class="field">
+          <textarea id="account-prompt-input" rows="3" placeholder="Contoh: selalu kasih contoh kode kalau relevan"></textarea>
         </div>
+        <button class="secondary account-card-btn" id="account-prompt-save">
+          <span class="icon" data-icon="check"></span> Simpan Prompt
+        </button>
       </div>
-      <div class="modal-body">
-        <iframe id="frame" sandbox="allow-scripts allow-forms allow-modals allow-popups"></iframe>
-        <pre id="modal-code" class="hidden"></pre>
+
+      <button class="primary account-signout" id="account-signout-btn">
+        <span class="icon" data-icon="logout"></span> Keluar
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW -->
+<div id="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <button class="icon-btn" id="modal-close"><span class="icon" data-icon="close"></span></button>
+      <div class="modal-name" id="modal-name">index.html</div>
+      <div class="modal-tabs">
+        <button class="modal-tab active" id="tab-preview">Pratinjau</button>
+        <button class="modal-tab" id="tab-code">Kode</button>
+        <button class="modal-tab" id="modal-copy"><span class="icon" data-icon="copy"></span> Salin</button>
+        <button class="modal-tab" id="modal-download"><span class="icon" data-icon="download"></span> Unduh</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <iframe id="frame" sandbox="allow-scripts allow-forms allow-modals allow-popups"></iframe>
+      <pre id="modal-code" class="hidden"></pre>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div id="ctx-menu"></div>
+
+<!-- DROP ZONE OVERLAY -->
+<div id="drop-overlay">
+  <div class="drop-card">
+    <span class="icon" data-icon="file"></span>
+    <div>Lepas di sini buat kirim file/gambar</div>
+  </div>
+</div>
+
+<!-- KAMERA -->
+<div id="camera-modal">
+  <div class="camera-top">
+    <button class="icon-btn" id="camera-close"><span class="icon" data-icon="close"></span></button>
+    <div class="camera-count" id="camera-count">0 foto diambil</div>
+    <button class="icon-btn" id="camera-torch" title="Senter" disabled><span class="icon" data-icon="torch"></span></button>
+  </div>
+  <div class="camera-view">
+    <video id="camera-video" autoplay playsinline muted></video>
+    <canvas id="camera-canvas" hidden></canvas>
+  </div>
+  <div class="camera-thumbs" id="camera-thumbs"></div>
+  <div class="camera-controls">
+    <button class="icon-btn" id="camera-switch" title="Ganti kamera"><span class="icon" data-icon="refresh"></span></button>
+    <button id="camera-shutter" title="Ambil foto"></button>
+    <button class="primary camera-done" id="camera-done">Selesai (<span id="camera-done-count">0</span>)</button>
+  </div>
+  <div class="camera-error hidden" id="camera-error"></div>
+</div>
+
+<!-- KONFIRMASI HAPUS OBROLAN -->
+<div id="delete-confirm-modal">
+  <div class="delete-confirm-box">
+    <h2>Apakah anda serius ingin menghapus obrolan ini?</h2>
+    <p>Obrolan yang sudah dihapus tidak bisa dikembalikan lagi.</p>
+    <div class="delete-confirm-actions">
+      <button id="delete-confirm-cancel" type="button">Batal</button>
+      <button id="delete-confirm-yes" type="button">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<!-- REDEEM KODE -->
+<div id="redeem-modal">
+  <div class="redeem-box">
+    <button id="redeem-close" class="redeem-x" type="button">&times;</button>
+    <span class="icon redeem-icon" data-icon="gift"></span>
+    <h2>Redeem Kode</h2>
+    <p id="redeem-status">Masukkan kode redeem kamu di bawah ini.</p>
+    <input type="text" id="redeem-input" placeholder="Masukkan kode di sini...">
+    <button id="redeem-submit">Redeem Sekarang</button>
+    <p id="redeem-current" class="redeem-current"></p>
+    <p id="redeem-expiry" class="redeem-expiry"></p>
+    <div id="redeem-usage-wrap">
+      <div class="redeem-usage-label">
+        <span>Chat terpakai</span>
+        <span id="redeem-usage-count">0 dari 100</span>
+      </div>
+      <div class="redeem-usage-track">
+        <div id="redeem-usage-bar"></div>
+      </div>
+    </div>
+    <div id="redeem-admin-generator" class="hidden">
+      <hr>
+      <p class="redeem-admin-title"><span class="icon" data-icon="idcard"></span> Generate Kode (Admin)</p>
+      <select id="gen-code-type">
+        <option value="unlimited">Unlimited Chat</option>
+        <option value="limit100">100 Chat / Hari</option>
+      </select>
+      <input type="number" id="gen-code-days" min="1" value="3" placeholder="Berlaku berapa hari">
+      <button id="gen-code-btn" type="button">Generate</button>
+      <div id="gen-code-result" class="hidden">
+        <code id="gen-code-output"></code>
+        <button id="gen-code-copy" type="button">Salin</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div id="ctx-menu"></div>
-  <div id="drop-overlay">
-    <div class="drop-card">
-      <span class="icon" data-icon="file"></span>
-      <div>Lepas di sini buat kirim file/gambar</div>
-    </div>
-  </div>
+<script src="security.js"></script>
+<script src="script.js"></script>
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
+</script>
 
-  <div id="camera-modal">
-    <div class="camera-top">
-      <button class="icon-btn" id="camera-close"><span class="icon" data-icon="close"></span></button>
-      <div class="camera-count" id="camera-count">0 foto diambil</div>
-      <button class="icon-btn" id="camera-torch" title="Senter" disabled><span class="icon" data-icon="torch"></span></button>
-    </div>
-    <div class="camera-view">
-      <video id="camera-video" autoplay playsinline muted></video>
-      <canvas id="camera-canvas" hidden></canvas>
-    </div>
-    <div class="camera-thumbs" id="camera-thumbs"></div>
-    <div class="camera-controls">
-      <button class="icon-btn" id="camera-switch" title="Ganti kamera"><span class="icon" data-icon="refresh"></span></button>
-      <button id="camera-shutter" title="Ambil foto"></button>
-      <button class="primary camera-done" id="camera-done">Selesai (<span id="camera-done-count">0</span>)</button>
-    </div>
-    <div class="camera-error hidden" id="camera-error"></div>
-  </div>
-
-  <div id="delete-confirm-modal">
-    <div class="delete-confirm-box">
-      <h2>Apakah anda serius ingin menghapus obrolan ini?</h2>
-      <p>Obrolan yang sudah dihapus tidak bisa dikembalikan lagi.</p>
-      <div class="delete-confirm-actions">
-        <button id="delete-confirm-cancel" type="button">Batal</button>
-        <button id="delete-confirm-yes" type="button">Hapus</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="redeem-modal">
-    <div class="redeem-box">
-      <button id="redeem-close" class="redeem-x" type="button">&times;</button>
-      <span class="icon redeem-icon" data-icon="gift"></span>
-      <h2>Redeem Kode</h2>
-      <p id="redeem-status">Masukkan kode redeem kamu di bawah ini.</p>
-      <input type="text" id="redeem-input" placeholder="Masukkan kode di sini...">
-      <button id="redeem-submit">Redeem Sekarang</button>
-      <p id="redeem-current" class="redeem-current"></p>
-      <p id="redeem-expiry" class="redeem-expiry"></p>
-      <div id="redeem-usage-wrap">
-        <div class="redeem-usage-label">
-          <span>Chat terpakai</span>
-          <span id="redeem-usage-count">0 dari 100</span>
-        </div>
-        <div class="redeem-usage-track">
-          <div id="redeem-usage-bar"></div>
-        </div>
-      </div>
-      <div id="redeem-admin-generator" class="hidden">
-        <hr>
-        <p class="redeem-admin-title"><span class="icon" data-icon="idcard"></span> Generate Kode (Admin)</p>
-        <select id="gen-code-type">
-          <option value="unlimited">Unlimited Chat</option>
-          <option value="limit100">100 Chat / Hari</option>
-        </select>
-        <input type="number" id="gen-code-days" min="1" value="3" placeholder="Berlaku berapa hari">
-        <button id="gen-code-btn" type="button">Generate</button>
-        <div id="gen-code-result" class="hidden">
-          <code id="gen-code-output"></code>
-          <button id="gen-code-copy" type="button">Salin</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="security.js"></script>
-  <script src="script.js"></script>
-  <script>
-    if("serviceWorker" in navigator){
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("sw.js").catch(() => {});
-      });
-    }
-  </script>
 </body>
 </html>
