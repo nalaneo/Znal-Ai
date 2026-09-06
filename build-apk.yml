@@ -1,0 +1,73 @@
+name: Build & Release APK
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.0'
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload APK to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: znal-ai-apk
+          path: build/app/outputs/flutter-app-release.apk
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: ZNAL AI v${{ github.run_number }}
+          body: |
+            🚀 ZNAL AI APK Release
+            
+            ✨ Features:
+            - Voice Chat dengan Microphone
+            - 100 Chat/Hari Limit
+            - Code Panel dengan Syntax Highlighting
+            - File Generation (PDF, Excel, Doc)
+            - Thinking Mode
+            - Text Selection Panel
+            - Retry 6x + Jalankan Ulang
+            
+            📥 Download APK dan install di HP Bos!
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/app/outputs/flutter-app-release.apk
+          asset_name: znal-ai-${{ github.run_number }}.apk
+          asset_content_type: application/vnd.android.package-archive

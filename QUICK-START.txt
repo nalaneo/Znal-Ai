@@ -1,0 +1,129 @@
+🚀 ZNAL AI APK - QUICK START (5 MENIT)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LANGKAH 1: PERSIAPAN
+───────────────────
+✅ Punya GitHub account? (Signup di https://github.com)
+✅ Punya Ciora API key? (Dari https://ciora.my.id)
+✅ Siap? Lanjut ke langkah 2
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LANGKAH 2: BUAT REPOSITORY
+──────────────────────────
+1. Buka: https://github.com/new
+2. Nama repo: znal-ai
+3. Pilih: Public
+4. Klik: Create Repository
+5. Copy clone link (HTTPS)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LANGKAH 3: CLONE & SETUP
+────────────────────────
+1. Buka terminal / command prompt
+2. Jalankan:
+   
+   git clone [CLONE-LINK-LO]
+   cd znal-ai
+   flutter create .
+
+3. Copy files ke folder:
+   - pubspec.yaml → root
+   - main.dart → lib/main.dart
+   - build-apk.yml → .github/workflows/
+   - AndroidManifest.xml → android/app/src/main/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LANGKAH 4: EDIT API KEY
+───────────────────────
+1. Buka: lib/main.dart
+2. Cari: final String cioraApiKey = 'YOUR_CIORA_API_KEY'
+3. Ganti 'YOUR_CIORA_API_KEY' dengan API key dari Ciora
+4. Save file
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LANGKAH 5: PUSH & BUILD
+───────────────────────
+1. Terminal, jalankan:
+   
+   git add .
+   git commit -m "Initial ZNAL AI setup"
+   git push origin main
+
+2. Buka: https://github.com/[USERNAME]/znal-ai
+3. Klik tab: Actions
+4. Tunggu workflow "Build & Release APK" jalan
+5. TUNGGU 5-10 MENIT ⏳
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LANGKAH 6: DOWNLOAD APK
+──────────────────────
+1. Build workflow selesai? ✅
+2. Klik workflow yang sukses
+3. Scroll ke bawah
+4. Download: znal-ai-apk.zip
+5. Extract file ZIP
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LANGKAH 7: INSTALL DI HP
+────────────────────────
+1. Pindahkan APK ke HP Bos
+2. Buka File Manager
+3. Cari file APK
+4. Tap → Install
+5. Open → SELESAI! 🎉
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 FILES YANG DIBUTUHKAN:
+────────────────────────
+✅ pubspec.yaml
+✅ main.dart
+✅ build-apk.yml
+✅ AndroidManifest.xml
+✅ .gitignore
+✅ README.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 DONE!
+
+Sekarang Bos punya ZNAL AI APK yang:
+✨ Voice Chat
+💬 100 Chat/Hari
+💻 Code Panel
+📄 File Generation
+🧠 Thinking Mode
+🎨 Beautiful UI
+📱 Mobile Native
+
+Enjoy ZNAL AI! 💜
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❓ ADA ERROR?
+
+1. GitHub Actions Failed?
+   → Cek tab Actions, lihat error message
+
+2. API Key Error?
+   → Edit main.dart, pastikan API key benar
+
+3. APK Tidak Mau Install?
+   → HP: Settings → Security → Unknown Sources (ON)
+
+4. Masih Stuck?
+   → Baca README.md atau hubungi support
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📞 BANTUAN:
+Baca: SETUP-GUIDE.md atau README.md
+
+🚀 HAPPY CODING!
